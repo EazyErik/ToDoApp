@@ -11,8 +11,10 @@ import java.util.UUID;
 
 public class Task {
 
-    private final String task;
+    private  String task;
     private final String description;
-    private final String status;
+    private  String status;
     private final String id = UUID.randomUUID().toString();
+
+
 }

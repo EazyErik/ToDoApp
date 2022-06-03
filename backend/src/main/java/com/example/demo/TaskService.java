@@ -10,14 +10,61 @@ import java.util.List;
 public class TaskService {
     private final TaskRepo taskRepo;
 
-    void addTask(Task taskToAdd) {
-        taskRepo.addTask(taskToAdd);
-    }
-    List<Task> getTask(){
-        return taskRepo.getTask();
-    }
-    void promoteTask(Task task){
-        return taskRepo.promoteTask(task);
+    public void addTask(Task taskToAdd) {
+        taskRepo.save(taskToAdd);
     }
 
+    public List<Task> getTasks() {
+        return taskRepo.getTasks();
+    }
+
+
+    public void changeStatusForward(Task task) {
+        Task currentTask = taskRepo.findByID(task.getId());
+        String currentStatus = currentTask.getStatus();
+        switch (currentStatus) {
+            case "OPEN":
+                currentTask.setStatus("IN_PROGRESS");
+                break;
+            case "IN_PROGRESS":
+                currentTask.setStatus("DONE");
+                break;
+            default:
+                break;
+        }
+        taskRepo.save(currentTask);
+
+    }
+
+    public void changeStatusBackwards(Task task) {
+        Task currentTask = taskRepo.findByID(task.getId());
+        String currentStatus = currentTask.getStatus();
+        switch (currentStatus) {
+            case "DONE":
+                currentTask.setStatus("IN_PROGRESS");
+                break;
+            case "IN_PROGRESS":
+                currentTask.setStatus("OPEN");
+                break;
+            default:
+                break;
+        }
+        taskRepo.save(currentTask);
+    }
+
+    public void editTask(Task task) {
+
+        taskRepo.save(task);
+
+    }
+
+    public Task getTask(String id) {
+        return taskRepo.findByID(id);
+    }
+
+
+    public void deleteTask(String id) {
+       taskRepo.deleteTask(id);
+    }
 }
+
