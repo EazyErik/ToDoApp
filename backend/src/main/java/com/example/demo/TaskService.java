@@ -19,37 +19,16 @@ public class TaskService {
     }
 
 
+
     public void changeStatusForward(Task task) {
-        Task currentTask = taskRepo.findByID(task.getId());
-        String currentStatus = currentTask.getStatus();
-        switch (currentStatus) {
-            case "OPEN":
-                currentTask.setStatus("IN_PROGRESS");
-                break;
-            case "IN_PROGRESS":
-                currentTask.setStatus("DONE");
-                break;
-            default:
-                break;
-        }
-        taskRepo.save(currentTask);
+       task.setStatus(task.getStatus().changeForward());
+       taskRepo.save(task);
 
     }
 
     public void changeStatusBackwards(Task task) {
-        Task currentTask = taskRepo.findByID(task.getId());
-        String currentStatus = currentTask.getStatus();
-        switch (currentStatus) {
-            case "DONE":
-                currentTask.setStatus("IN_PROGRESS");
-                break;
-            case "IN_PROGRESS":
-                currentTask.setStatus("OPEN");
-                break;
-            default:
-                break;
-        }
-        taskRepo.save(currentTask);
+       task.setStatus(task.getStatus().changeBackwards());
+
     }
 
     public void editTask(Task task) {
