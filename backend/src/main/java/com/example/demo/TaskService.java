@@ -28,6 +28,7 @@ public class TaskService {
 
     public void changeStatusBackwards(Task task) {
        task.setStatus(task.getStatus().changeBackwards());
+       taskRepo.save(task);
 
     }
 
