@@ -69,6 +69,19 @@ class TaskServiceTest {
         Mockito.verify(taskRepo).deleteTask(todo.getId());
 
     }
+    @Test
+    void shouldChangeStatusToPreviousStatus() {
+
+        //given
+        Task todo = new Task("neu", "blabla", Status.OPEN);
+        TaskRepo taskRepo = Mockito.mock(TaskRepo.class);
+        TaskService taskService = new TaskService(taskRepo);
+        //when and then
+        taskService.changeStatusBackwards(todo);
+        todo.setStatus(todo.getStatus().changeBackwards());
+        Mockito.verify(taskRepo).save(todo);
+
+    }
 
 
 
