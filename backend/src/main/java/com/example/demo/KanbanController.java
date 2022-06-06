@@ -19,7 +19,7 @@ public class KanbanController {
     }
 
     @GetMapping()
-    public List<Task> getTask() {
+    public List<Task> getTasks() {
         return taskService.getTasks();
 
     }

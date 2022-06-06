@@ -22,8 +22,4 @@ public enum Status {
         return this.status.equals("DONE") ? Status.IN_PROGRESS : Status.OPEN;
     }
 
-
-
-
-
 }
