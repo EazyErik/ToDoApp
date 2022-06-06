@@ -43,6 +43,34 @@ class TaskServiceTest {
 
     }
 
+    @Test
+    void shouldEditATask() {
+        //given
+        Task todo = new Task("neu", "blabla", Status.OPEN);
+        TaskRepo taskRepo = Mockito.mock(TaskRepo.class);
+        TaskService taskService = new TaskService(taskRepo);
+
+        //when and then
+        taskService.editTask(todo);
+        Mockito.verify(taskRepo).save(todo);
+
+
+
+    }
+
+    @Test
+    void shouldDeleteATask() {
+        //given
+        Task todo = new Task("neu", "blabla", Status.OPEN);
+        TaskRepo taskRepo = Mockito.mock(TaskRepo.class);
+        TaskService taskService = new TaskService(taskRepo);
+        //when and then
+        taskService.deleteTask(todo.getId());
+        Mockito.verify(taskRepo).deleteTask(todo.getId());
+
+    }
+
+
 
 
     }
