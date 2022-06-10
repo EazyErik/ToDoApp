@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,8 +39,8 @@ public class TaskService {
 
     }
 
-    public Task getTask(String id) {
-        return taskRepo.findByID(id);
+    public Optional<Task> getTask(String id) {
+        return Optional.ofNullable(taskRepo.findByID(id));
     }
 
 

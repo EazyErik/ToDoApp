@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/kanban")
 @RequiredArgsConstructor
+@CrossOrigin
 public class KanbanController {
 
     private final TaskService taskService;
@@ -34,7 +36,7 @@ public class KanbanController {
     }
 
     @GetMapping("/{id}")
-    public Task getTask(@PathVariable String id){
+    public Optional<Task> getTask(@PathVariable String id){
         return taskService.getTask(id);
 
     }

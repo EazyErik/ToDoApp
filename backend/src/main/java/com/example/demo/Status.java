@@ -14,12 +14,12 @@ public enum Status {
     }
 
     Status changeForward() {
-        return this.status.equals("OPEN") ? Status.IN_PROGRESS : Status.DONE;
+        return this == OPEN ? IN_PROGRESS : DONE;
 
     }
 
     Status changeBackwards() {
-        return this.status.equals("DONE") ? Status.IN_PROGRESS : Status.OPEN;
+        return this == DONE ? IN_PROGRESS : OPEN;
     }
 
 }

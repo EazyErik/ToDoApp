@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -82,6 +82,24 @@ class TaskServiceTest {
         Mockito.verify(taskRepo).save(todo);
 
     }
+    @Test
+    void shouldFailIfTaskIDIsWrong() {
+
+        //given
+        Task todo = new Task("neu", "blabla", Status.OPEN);
+        TaskRepo taskRepo = Mockito.mock(TaskRepo.class);
+        TaskService taskService = new TaskService(taskRepo);
+
+        //when
+        Mockito.when(taskRepo.findByID("WrongID1234")).thenReturn(todo);
+        //then
+        Assertions.assertThat(taskService.getTask(todo.getId())).isNotEqualTo(todo);
+
+
+
+
+    }
+
 
 
 
