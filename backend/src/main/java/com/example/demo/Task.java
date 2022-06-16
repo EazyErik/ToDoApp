@@ -20,6 +20,6 @@ public class Task {
     public Task(String task, String description, Status status) {
         this.task = task;
         this.description = description;
-        this.status = status;
+        this.status = status != null ? status : Status.OPEN;
     }
 }

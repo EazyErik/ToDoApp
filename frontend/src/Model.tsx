@@ -6,6 +6,7 @@ enum  TaskStatus {
 
 
 export interface Model {
+    id:string;
     task:string;
     description:string;
     status: TaskStatus;

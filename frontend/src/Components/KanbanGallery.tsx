@@ -1,15 +1,22 @@
 import KanbanCard from "./KanbanCard";
+import {useEffect, useState} from "react";
+import {Model} from "../Model";
 
-export default function KanbanGallery() {
+
+interface KanbanBoardProps{
+    allTasks:Array<Model>;
+
+}
+
+
+export default function KanbanGallery(props:KanbanBoardProps) {
+
+    const taskCardArray = props.allTasks.map(taskCard =><KanbanCard infos={taskCard}/>)
+
 
     return(
         <div>
-            <h2>OPEN</h2>
-            <KanbanCard/>
-            <h2>IN PROGRESS</h2>
-           <KanbanCard/>
-            <h2>DONE</h2>
-            <KanbanCard/>
+            {taskCardArray}
         </div>
     )
 
