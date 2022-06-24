@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {Task} from "./model";
 import {deleteTask, demoteTask, promoteTask} from "../services/apiServices";
 import {useNavigate} from "react-router-dom";

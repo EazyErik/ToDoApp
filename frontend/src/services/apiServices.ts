@@ -1,4 +1,4 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 import {Task} from "../components/model";
 
 export function fetchAllTasks() {

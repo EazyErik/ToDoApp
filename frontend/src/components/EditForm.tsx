@@ -9,7 +9,7 @@ export default function EditForm() {
 
     const [editTask,setEditTask] = useState("")
     const[editDescription,setEditDescription] = useState("")
-    const[status,setStatus] = useState("OPEN")
+
 
 
     const {id} = useParams()
@@ -21,7 +21,7 @@ export default function EditForm() {
            .then((response:AxiosResponse<Task>) => {
                setEditTask(response.data.task)
                setEditDescription(response.data.description)
-               setStatus(response.data.status)
+
 
            })
 

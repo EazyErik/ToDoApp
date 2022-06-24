@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import Heading from "./components/Heading";
 import Inputfield from "./components/Inputfield";
 import KanbanGallery from "./components/KanbanGallery";
 
