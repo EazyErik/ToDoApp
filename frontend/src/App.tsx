@@ -1,26 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
+import './App.css';
+import Inputfield from "./components/Inputfield";
+import KanbanGallery from "./components/KanbanGallery";
 
-function App() {
+import {fetchAllTasks} from "./services/apiServices";
+import {Task} from "./components/model";
 
-    const [greeting, setGreeting] = useState('')
 
+
+
+export default function App() {
+
+    const [tasks, setTasks] = useState<Array<Task>>([]);
     useEffect(() => {
-        fetch('/api/greeting', {
-            method: 'GET',
-            headers: {
-                'Accept': 'text/plain'
-            }
-        })
-            .then(response => response.text())
-            .then(text => setGreeting(text))
-            .catch(err => setGreeting('Da ist etwas schief gelaufen'));
-    }, []);
+        fetchAll()
 
+    }, [])
+
+    const fetchAll = () => {
+        fetchAllTasks()
+            .then(tasksFromDB => setTasks(tasksFromDB));
+    }
     return (
-        <div>
-            {greeting}
+        <div >
+
+
+
+            <Inputfield  onTaskCreation={fetchAll}/>
+            <KanbanGallery tasks={tasks} updateTasks={fetchAll}/>
         </div>
+
     );
 }
 
-export default App;
+
