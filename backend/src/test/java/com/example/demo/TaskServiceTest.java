@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -35,7 +36,7 @@ class TaskServiceTest {
         TaskRepo taskRepo = Mockito.mock(TaskRepo.class);
         TaskService taskService = new TaskService(taskRepo);
         //when
-        Mockito.when(taskRepo.getTasks()).thenReturn(List.of(todo, todo2, todo3));
+        Mockito.when(taskRepo.findAll()).thenReturn(List.of(todo, todo2, todo3));
 
         //then
         assertThat(taskService.getTasks()).contains(todo, todo2, todo3);
@@ -66,7 +67,7 @@ class TaskServiceTest {
         TaskService taskService = new TaskService(taskRepo);
         //when and then
         taskService.deleteTask(todo.getId());
-        Mockito.verify(taskRepo).deleteTask(todo.getId());
+        Mockito.verify(taskRepo).deleteById(todo.getId());
 
     }
     @Test
@@ -91,7 +92,7 @@ class TaskServiceTest {
         TaskService taskService = new TaskService(taskRepo);
 
         //when
-        Mockito.when(taskRepo.findByID("WrongID1234")).thenReturn(todo);
+        Mockito.when(taskRepo.findById("WrongID1234")).thenReturn(Optional.of(todo));
         //then
         Assertions.assertThat(taskService.getTask(todo.getId())).isNotEqualTo(todo);
 
