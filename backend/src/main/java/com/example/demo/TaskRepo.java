@@ -1,39 +1,22 @@
 package com.example.demo;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
+
 
 @Repository
-@RequiredArgsConstructor
-public class TaskRepo {
+public interface TaskRepo extends MongoRepository<Task, String> {
 
+Task getTasksById(String id);
 
-    private final Map<String, Task> taskList = new HashMap<>();
+    void deleteById(String id);
 
-    public void save(Task task) {
-        taskList.put(task.getId(), task);
-    }
-
-    public List<Task> getTasks() {
-        return taskList.values().stream().toList();
-    }
-
-
-    public Task findByID(String id) {
-        return taskList.get(id);
-    }
-
-    public void deleteTask(String id) {
-        taskList.remove(id);
-
-
-    }
-
-
+    List<Task> getTasksBy();
 }
+
 
 
