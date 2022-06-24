@@ -16,7 +16,7 @@ public class TaskService {
     }
 
     public List<Task> getTasks() {
-        return taskRepo.getTasksBy();
+        return taskRepo.findAll();
     }
 
 
@@ -40,7 +40,7 @@ public class TaskService {
     }
 
     public Optional<Task> getTask(String id) {
-        return Optional.ofNullable(taskRepo.getTasksById(id));
+        return taskRepo.findById(id);
     }
 
 
