@@ -14,3 +14,8 @@ export enum KanbanStatus{
 
 
 }
+
+export interface LoginResponse{
+    token:string
+
+}

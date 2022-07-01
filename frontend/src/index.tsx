@@ -7,6 +7,8 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import TaskEditor from "./components/TaskEditor";
 import Heading from "./components/Heading";
 import 'bootstrap/dist/css/bootstrap.css';
+import RegisterPage from "./components/RegisterPage";
+import LoginPage from "./components/LoginPage";
 
 
 const root = ReactDOM.createRoot(
@@ -19,6 +21,8 @@ root.render(
       <Heading/>
       <BrowserRouter>
           <Routes>
+              <Route path={"/register"} element={<RegisterPage />}></Route>
+              <Route path={"/login"} element={<LoginPage />} />
               <Route path={"/"} element={ <App />}/>
               <Route path={"/edit/:id"} element={<TaskEditor/>}/>
 
