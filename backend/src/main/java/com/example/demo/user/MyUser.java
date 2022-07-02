@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.UUID;
 
 @Document(collection = "kanbanUser")
 @Data
@@ -20,6 +21,7 @@ public class MyUser {
     @Id
     private String id;
     private List<String> roles;
+    private String userId = UUID.randomUUID().toString();
 
 
 }

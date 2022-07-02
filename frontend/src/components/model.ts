@@ -5,6 +5,7 @@ export interface Task{
     description:string;
     status:KanbanStatus;
 
+
 }
 
 export enum KanbanStatus{

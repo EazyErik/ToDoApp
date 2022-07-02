@@ -28,10 +28,11 @@ public class JWTAuthFilter extends OncePerRequestFilter {
             try{
                 Claims claims = jwtService.extractAllClaims(token);
                 setSecurityContext(claims);
-                //todo
-
+            }catch(Exception e) {
+                response.setStatus(401);
             }
         }
+        filterChain.doFilter(request,response);
     }
     private String getToken(HttpServletRequest request) {
         String authorization = request.getHeader("Authorization");

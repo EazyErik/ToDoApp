@@ -22,8 +22,8 @@ root.render(
       <BrowserRouter>
           <Routes>
               <Route path={"/register"} element={<RegisterPage />}></Route>
-              <Route path={"/login"} element={<LoginPage />} />
-              <Route path={"/"} element={ <App />}/>
+              <Route path={"/"} element={<LoginPage />} />
+              <Route path={"/app"} element={ <App />}/>
               <Route path={"/edit/:id"} element={<TaskEditor/>}/>
 
           </Routes>
