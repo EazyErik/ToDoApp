@@ -15,7 +15,7 @@ export default function LoginPage() {
         event.preventDefault()
         logInNow(username,password)
             .then(loginResponse => localStorage.setItem("jwt",loginResponse.token))
-            .then(() => nav("/app"))
+            .then(() => nav("/"))
             .catch(() => setError("Login not possible"))
 
     }

@@ -15,6 +15,7 @@ export default function RegisterPage() {
         event.preventDefault()
             registerNow(username,password)
             .then(() => nav("/"))
+                .catch(() => setError("Registration not possible"))
 
     }
 
@@ -27,6 +28,7 @@ export default function RegisterPage() {
                 <input type={"submit"} value={"Register now"}/>
 
             </form>
+            {error}
         </div>
     )
 }
