@@ -34,6 +34,7 @@ public class LoginController {
             return ResponseEntity.ok(new LoginResponse(jwtService.createToken(claims,loginData.getUsername())));
 
         }catch (Exception e) {
+            System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }

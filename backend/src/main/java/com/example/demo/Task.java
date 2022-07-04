@@ -17,18 +17,19 @@ import java.util.UUID;
 @Document(collection = "kanbans")
 public class Task {
 
-    private  String task;
-    private  String description;
-    private  Status status;
+    private String task;
+    private String description;
+    private Status status;
     @Id
     private String id;
     private String username;
 
 
-//    public Task(String task, String description, Status status) {
-//        this.task = task;
-//        this.description = description;
-//        this.status = status;
-//
-//    }
+    public Task(String task, String description, Status status, String id) {
+        this.task = task;
+        this.description = description;
+        this.status = status;
+        this.id = id;
+
+    }
 }

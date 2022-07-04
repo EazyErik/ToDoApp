@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {createTask} from "../services/apiServices";
 import {KanbanStatus} from "./model";
+import {useNavigate} from "react-router-dom";
 
 
 interface InputfieldProps {
@@ -12,7 +13,9 @@ interface InputfieldProps {
 export default function Inputfield(props:InputfieldProps) {
 
     const[task,setTask] = useState<string>(localStorage.getItem("task") ?? "");
+
     const[description,setDescription] = useState<string>(localStorage.getItem("description") ?? "");
+    const nav = useNavigate()
 
     useEffect(() => {
         localStorage.setItem("task",task)
@@ -37,7 +40,7 @@ export default function Inputfield(props:InputfieldProps) {
                 setDescription("");
                 props.onTaskCreation();
             })
-
+                .catch(() => nav("/"))
 
     }
 

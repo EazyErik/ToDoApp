@@ -14,13 +14,13 @@ import java.util.Optional;
 public class TaskService {
     private final TaskRepo taskRepo;
 
-    public void addTask(Task taskToAdd,Principal principal) {
-        taskToAdd.setUsername(principal.getName());
+    public void addTask(Task taskToAdd,String principal) {
+       taskToAdd.setUsername(principal);
         taskRepo.save(taskToAdd);
     }
 
-    public List<Task> getTasks(Principal principal) {
-        return taskRepo.findAllByUsername(principal.getName());
+    public List<Task> getTasks(String principal) {
+        return taskRepo.findAllByUsername(principal);
     }
 
 

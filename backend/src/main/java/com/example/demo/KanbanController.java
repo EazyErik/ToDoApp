@@ -17,14 +17,14 @@ public class KanbanController {
     private final TaskService taskService;
 
     @PostMapping()
-    public void addTask(@RequestBody Task task,Principal principal) {
-        taskService.addTask(task,principal);
+    public void addTask(@RequestBody Task task,Principal username) {
+        taskService.addTask(task,username.getName());
 
     }
 
     @GetMapping()
-    public List<Task> getTasks(Principal principal) {
-        return taskService.getTasks(principal);
+    public List<Task> getTasks(Principal username) {
+        return taskService.getTasks(username.getName());
 
     }
     @PutMapping("/next")
