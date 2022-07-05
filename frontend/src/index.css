@@ -45,7 +45,14 @@ body{
     margin-right:1%;
     margin-bottom:1%;
 }
-
+.signUp{
+    margin-top: 5%;
+    padding-bottom:5%;
+}
+.Login{
+    text-align: center;
+    margin-top: 5%;
+}
 
 
 

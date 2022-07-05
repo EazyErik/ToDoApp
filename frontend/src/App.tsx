@@ -24,8 +24,6 @@ export default function App() {
     return (
         <div >
 
-
-
             <Inputfield  onTaskCreation={fetchAll}/>
             <KanbanGallery tasks={tasks} updateTasks={fetchAll}/>
         </div>

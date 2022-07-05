@@ -1,10 +1,12 @@
 package com.example.demo;
 
+import com.example.demo.user.MyUser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,39 +17,46 @@ class TaskServiceTest {
     @Test
     void shouldAddATask() {
 
-        Task todo = new Task("neu", "blabla", Status.OPEN);
+        Task todo = new Task("neu", "blabla", Status.OPEN,"1");
+
+
+
 
         TaskRepo taskRepo = Mockito.mock(TaskRepo.class);
         TaskService taskService = new TaskService(taskRepo);
         //when
-        taskService.addTask(todo);
+        taskService.addTask(todo,"test-user");
         //then
-        Mockito.verify(taskRepo).save(todo);
+        Task expectedTask = new Task("neu", "blabla", Status.OPEN,"1","test-user");
+        Mockito.verify(taskRepo).save(expectedTask);
 
     }
 
     @Test
     void shouldReturnAllTasks() {
         //given
-        Task todo = new Task("neu", "blabla", Status.OPEN);
-        Task todo2 = new Task("neuer", "blablablablabla", Status.OPEN);
-        Task todo3 = new Task("am neusten", "blablablablablabla", Status.OPEN);
+        Task todo = new Task("neu", "blabla", Status.OPEN,"1");
+        Task todo2 = new Task("neuer", "blablablablabla", Status.OPEN,"2");
+        Task todo3 = new Task("am neusten", "blablablablablabla", Status.OPEN,"3");
+
+
+
 
         TaskRepo taskRepo = Mockito.mock(TaskRepo.class);
         TaskService taskService = new TaskService(taskRepo);
         //when
-        Mockito.when(taskRepo.findAll()).thenReturn(List.of(todo, todo2, todo3));
+        Mockito.when(taskRepo.findAllByUsername("test-user")).thenReturn(List.of(todo, todo2, todo3));
 
         //then
-        assertThat(taskService.getTasks()).contains(todo, todo2, todo3);
+        assertThat(taskService.getTasks("test-user")).contains(todo, todo2, todo3);
 
 
-    }
+   }
 
     @Test
     void shouldEditATask() {
         //given
-        Task todo = new Task("neu", "blabla", Status.OPEN);
+        Task todo = new Task("neu", "blabla", Status.OPEN,"1");
         TaskRepo taskRepo = Mockito.mock(TaskRepo.class);
         TaskService taskService = new TaskService(taskRepo);
 
@@ -62,7 +71,7 @@ class TaskServiceTest {
     @Test
     void shouldDeleteATask() {
         //given
-        Task todo = new Task("neu", "blabla", Status.OPEN);
+        Task todo = new Task("neu", "blabla", Status.OPEN,"1");
         TaskRepo taskRepo = Mockito.mock(TaskRepo.class);
         TaskService taskService = new TaskService(taskRepo);
         //when and then
@@ -74,7 +83,7 @@ class TaskServiceTest {
     void shouldChangeStatusToPreviousStatus() {
 
         //given
-        Task todo = new Task("neu", "blabla", Status.OPEN);
+        Task todo = new Task("neu", "blabla", Status.OPEN,"1");
         TaskRepo taskRepo = Mockito.mock(TaskRepo.class);
         TaskService taskService = new TaskService(taskRepo);
         //when and then
@@ -87,7 +96,7 @@ class TaskServiceTest {
     void shouldFailIfTaskIDIsWrong() {
 
         //given
-        Task todo = new Task("neu", "blabla", Status.OPEN);
+        Task todo = new Task("neu", "blabla", Status.OPEN,"1");
         TaskRepo taskRepo = Mockito.mock(TaskRepo.class);
         TaskService taskService = new TaskService(taskRepo);
 

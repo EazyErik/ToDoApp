@@ -1,8 +1,10 @@
 package com.example.demo;
 
+import com.example.demo.user.MyUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,14 +17,14 @@ public class KanbanController {
     private final TaskService taskService;
 
     @PostMapping()
-    public void addTask(@RequestBody Task task) {
-        taskService.addTask(task);
+    public void addTask(@RequestBody Task task,Principal username) {
+        taskService.addTask(task,username.getName());
 
     }
 
     @GetMapping()
-    public List<Task> getTasks() {
-        return taskService.getTasks();
+    public List<Task> getTasks(Principal username) {
+        return taskService.getTasks(username.getName());
 
     }
     @PutMapping("/next")

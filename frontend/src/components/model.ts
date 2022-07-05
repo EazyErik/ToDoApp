@@ -5,6 +5,7 @@ export interface Task{
     description:string;
     status:KanbanStatus;
 
+
 }
 
 export enum KanbanStatus{
@@ -12,5 +13,10 @@ export enum KanbanStatus{
     IN_PROGRESS = "IN_PROGRESS",
     DONE = "DONE"
 
+
+}
+
+export interface LoginResponse{
+    token:string
 
 }
